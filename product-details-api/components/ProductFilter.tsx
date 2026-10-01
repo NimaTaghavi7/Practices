@@ -1,7 +1,14 @@
 "use client";
 
-import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import { useEffect } from "react";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useSearchParams } from "next/navigation";
 import { Product } from "@/types/product";
 
 interface ProductFilterProps {
@@ -17,6 +24,27 @@ export default function ProductFilter({
   selectedCategory,
   setSelectedCategory,
 }: ProductFilterProps) {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const category = searchParams.get("category");
+
+    if (!category) {
+      return;
+    }
+
+    setSelectedCategory(category);
+
+    setFilteredProducts(
+      products.filter((product) => product.category === category)
+    );
+  }, [
+    products,
+    searchParams,
+    setFilteredProducts,
+    setSelectedCategory,
+  ]);
+
   const handleFilter = (category: string, title: string) => {
     setSelectedCategory(title);
 
@@ -24,7 +52,7 @@ export default function ProductFilter({
       setFilteredProducts(products);
     } else {
       setFilteredProducts(
-        products.filter((product) => product.category === category),
+        products.filter((product) => product.category === category)
       );
     }
   };
@@ -51,7 +79,11 @@ export default function ProductFilter({
       >
         {selectedCategory}
 
-        <ChevronDownIcon float="right" marginTop="3px" boxSize={5} />
+        <ChevronDownIcon
+          float="right"
+          marginTop="3px"
+          boxSize={5}
+        />
       </MenuButton>
 
       <MenuList
@@ -72,7 +104,9 @@ export default function ProductFilter({
         <MenuItem
           background="#0a0a0a"
           color="white"
-          onClick={() => handleFilter("electronics", "electronics")}
+          onClick={() =>
+            handleFilter("electronics", "electronics")
+          }
           _hover={{ background: "#222" }}
         >
           electronics
@@ -81,7 +115,9 @@ export default function ProductFilter({
         <MenuItem
           background="#0a0a0a"
           color="white"
-          onClick={() => handleFilter("jewelery", "jewelery")}
+          onClick={() =>
+            handleFilter("jewelery", "jewelery")
+          }
           _hover={{ background: "#222" }}
         >
           jewelery
@@ -90,7 +126,9 @@ export default function ProductFilter({
         <MenuItem
           background="#0a0a0a"
           color="white"
-          onClick={() => handleFilter("men's clothing", "men's clothing")}
+          onClick={() =>
+            handleFilter("men's clothing", "men's clothing")
+          }
           _hover={{ background: "#222" }}
         >
           men's clothing
@@ -99,7 +137,9 @@ export default function ProductFilter({
         <MenuItem
           background="#0a0a0a"
           color="white"
-          onClick={() => handleFilter("women's clothing", "women's clothing")}
+          onClick={() =>
+            handleFilter("women's clothing", "women's clothing")
+          }
           _hover={{ background: "#222" }}
         >
           women's clothing
