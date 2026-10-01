@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Menu,
   MenuButton,
@@ -6,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Product } from "@/types/product";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ProductFilterProps {
   products: Product[];
@@ -18,6 +20,19 @@ export default function ProductFilter({
   setFilteredProducts,
 }: ProductFilterProps) {
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+
+    if (category) {
+      setSelectedCategory(category);
+
+      setFilteredProducts(
+        products.filter((product) => product.category === category)
+      );
+    }
+  }, [products, setFilteredProducts]);
 
   const handleFilter = (category: string, title: string) => {
     setSelectedCategory(title);
@@ -44,6 +59,7 @@ export default function ProductFilter({
         borderRadius="6px"
         textAlign="left"
         cursor="pointer"
+        borderColor={selectedCategory !== "All" ? "#777" : "#444"}
         _hover={{
           borderColor: "#777",
         }}
@@ -52,6 +68,7 @@ export default function ProductFilter({
         }}
       >
         {selectedCategory}
+
         <ChevronDownIcon
           float="right"
           marginTop="3px"
@@ -95,7 +112,9 @@ export default function ProductFilter({
         <MenuItem
           background="#0a0a0a"
           color="white"
-          onClick={() => handleFilter("men's clothing", "men's clothing")}
+          onClick={() =>
+            handleFilter("men's clothing", "men's clothing")
+          }
           _hover={{ background: "#222" }}
         >
           men's clothing
@@ -104,7 +123,9 @@ export default function ProductFilter({
         <MenuItem
           background="#0a0a0a"
           color="white"
-          onClick={() => handleFilter("women's clothing", "women's clothing")}
+          onClick={() =>
+            handleFilter("women's clothing", "women's clothing")
+          }
           _hover={{ background: "#222" }}
         >
           women's clothing
@@ -113,3 +134,4 @@ export default function ProductFilter({
     </Menu>
   );
 }
+

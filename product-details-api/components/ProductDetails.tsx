@@ -1,4 +1,5 @@
 import { Product } from "@/types/product";
+import Link from "next/link";
 
 interface ProductDetailsProps {
   product: Product;
@@ -8,7 +9,14 @@ export default function ProductDetails({
   product,
 }: ProductDetailsProps) {
   return (
-    <div className="mx-auto max-w-4xl rounded-lg border border-gray-200 p-6">
+    <div className="relative mx-auto max-w-4xl rounded-lg border border-gray-700 p-6">
+      <Link
+        href="/"
+        className="absolute left-6 top-6 text-gray-400 hover:text-white"
+      >
+        ← Back to products
+      </Link>
+
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div className="flex items-center justify-center p-5">
           <img
@@ -19,19 +27,22 @@ export default function ProductDetails({
         </div>
 
         <div>
-          <h1 className="text-2xl font-bold  text-white">
+          <h1 className="text-2xl font-bold text-white">
             {product.title}
           </h1>
 
-          <p className="mt-4 text-xl font-semibold  text-white">
+          <p className="mt-4 text-xl font-semibold text-white">
             ${product.price}
           </p>
 
-          <p className="mt-3 text-gray-400">
+          <Link
+            href={`/?category=${encodeURIComponent(product.category)}`}
+            className="mt-3 block text-gray-400 hover:text-white"
+          >
             Category: {product.category}
-          </p>
+          </Link>
 
-          <p className="mt-3  text-white">
+          <p className="mt-3 text-white">
             ⭐ {product.rating.rate} ({product.rating.count})
           </p>
 
