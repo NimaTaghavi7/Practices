@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 import { Product } from "@/types/product";
 import ProductList from "@/components/ProductList";
+import ProductFilter from "@/components/ProductFilter";
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -19,6 +21,7 @@ export default function Home() {
       })
       .then((data) => {
         setProducts(data);
+        setFilteredProducts(data);
       })
       .catch(() => {
         setError("مشکلی در دریافت محصولات پیش آمد");
@@ -26,12 +29,17 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
-      <h1>Products</h1>
+    <main className="p-5">
+      <h1 className="mb-5 text-2xl font-bold">Products</h1>
 
       {error && <p>{error}</p>}
 
-      <ProductList products={products} />
+      <ProductFilter
+        products={products}
+        setFilteredProducts={setFilteredProducts}
+      />
+
+      <ProductList products={filteredProducts} />
     </main>
   );
 }
