@@ -8,32 +8,20 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Product } from "@/types/product";
-import { useEffect, useState } from "react";
 
 interface ProductFilterProps {
   products: Product[];
   setFilteredProducts: (products: Product[]) => void;
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
 }
 
 export default function ProductFilter({
   products,
   setFilteredProducts,
+  selectedCategory,
+  setSelectedCategory,
 }: ProductFilterProps) {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const category = params.get("category");
-
-    if (category) {
-      setSelectedCategory(category);
-
-      setFilteredProducts(
-        products.filter((product) => product.category === category)
-      );
-    }
-  }, [products, setFilteredProducts]);
-
   const handleFilter = (category: string, title: string) => {
     setSelectedCategory(title);
 
@@ -59,7 +47,6 @@ export default function ProductFilter({
         borderRadius="6px"
         textAlign="left"
         cursor="pointer"
-        borderColor={selectedCategory !== "All" ? "#777" : "#444"}
         _hover={{
           borderColor: "#777",
         }}
@@ -94,7 +81,9 @@ export default function ProductFilter({
         <MenuItem
           background="#0a0a0a"
           color="white"
-          onClick={() => handleFilter("electronics", "electronics")}
+          onClick={() =>
+            handleFilter("electronics", "electronics")
+          }
           _hover={{ background: "#222" }}
         >
           electronics
@@ -103,7 +92,9 @@ export default function ProductFilter({
         <MenuItem
           background="#0a0a0a"
           color="white"
-          onClick={() => handleFilter("jewelery", "jewelery")}
+          onClick={() =>
+            handleFilter("jewelery", "jewelery")
+          }
           _hover={{ background: "#222" }}
         >
           jewelery
