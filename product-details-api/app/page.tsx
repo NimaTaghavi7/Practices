@@ -15,13 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
         setProducts(data);
         setFilteredProducts(data);
@@ -43,7 +37,9 @@ export default function Home() {
 
   return (
     <main className="p-5">
-      <h1 className="mb-5 ml-5 text-2xl font-bold">Products</h1>
+      <h1 className="mb-5 text-2xl font-bold">
+        Products
+      </h1>
 
       <ProductFilter
         products={products}
@@ -54,3 +50,4 @@ export default function Home() {
     </main>
   );
 }
+
