@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Product } from "@/types/product";
+import ProductList from "@/components/ProductList";
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -30,7 +31,7 @@ export default function Home() {
 
       {error && <p>{error}</p>}
 
-      <p>Products count: {products.length}</p>
+      <ProductList products={products} />
     </main>
   );
 }
