@@ -21,21 +21,22 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
         </div>
 
-        <h2 className="mt-4 h-14 text-lg font-semibold">
+        <h2 className="mt-4 h-14 line-clamp-2 text-lg font-semibold text-white">
           {product.title}
         </h2>
 
-        <p className="mt-2">${product.price}</p>
+        <p className="mt-2 text-white">
+          ${product.price}
+        </p>
 
         <p className="mt-1 text-gray-500">
           {product.category}
         </p>
 
-        <p className="mt-2">
+        <p className="mt-2 text-white">
           ⭐ {product.rating.rate} ({product.rating.count})
         </p>
       </div>
     </Link>
   );
 }
-

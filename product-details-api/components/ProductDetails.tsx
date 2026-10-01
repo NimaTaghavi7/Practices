@@ -19,23 +19,23 @@ export default function ProductDetails({
         </div>
 
         <div>
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-2xl font-bold  text-white">
             {product.title}
           </h1>
 
-          <p className="mt-4 text-xl font-semibold">
+          <p className="mt-4 text-xl font-semibold  text-white">
             ${product.price}
           </p>
 
-          <p className="mt-3 text-gray-500">
+          <p className="mt-3 text-gray-400">
             Category: {product.category}
           </p>
 
-          <p className="mt-3">
+          <p className="mt-3  text-white">
             ⭐ {product.rating.rate} ({product.rating.count})
           </p>
 
-          <p className="mt-6 leading-7 text-gray-600">
+          <p className="mt-6 leading-7 text-gray-300">
             {product.description}
           </p>
         </div>
@@ -43,4 +43,3 @@ export default function ProductDetails({
     </div>
   );
 }
-

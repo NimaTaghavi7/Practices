@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <main className="p-5">
-      <h1 className="mb-5 ml-5 text-2xl font-bold">
+      <h1 className="mb-5 ml-5 text-2xl font-bold text-white">
         Products
       </h1>
 
