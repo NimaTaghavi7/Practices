@@ -1,6 +1,11 @@
 import "./globals.css";
 import ChakraProviderComponent from "@/ui/ChakraProvider";
 
+export const metadata = {
+  title: "Product Details API ",
+  description: "Product Details API",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

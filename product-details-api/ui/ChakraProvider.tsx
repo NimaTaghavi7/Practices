@@ -7,9 +7,5 @@ export default function ChakraProviderComponent({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <ChakraProvider resetCSS={false}>
-      {children}
-    </ChakraProvider>
-  );
+  return <ChakraProvider resetCSS={false}>{children}</ChakraProvider>;
 }

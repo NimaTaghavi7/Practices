@@ -6,9 +6,8 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const slug = product.id + "-" + product.title
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-");
+  const slug =
+    product.id + "-" + product.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
   return (
     <Link href={`/products/${slug}`}>
@@ -25,13 +24,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.title}
         </h2>
 
-        <p className="mt-2 text-white">
-          ${product.price}
-        </p>
+        <p className="mt-2 text-white">${product.price}</p>
 
-        <p className="mt-1 text-gray-500">
-          {product.category}
-        </p>
+        <p className="mt-1 text-gray-500">{product.category}</p>
 
         <p className="mt-2 text-white">
           ⭐ {product.rating.rate} ({product.rating.count})

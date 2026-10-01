@@ -5,9 +5,7 @@ interface ProductDetailsProps {
   product: Product;
 }
 
-export default function ProductDetails({
-  product,
-}: ProductDetailsProps) {
+export default function ProductDetails({ product }: ProductDetailsProps) {
   return (
     <div className="relative mx-auto max-w-4xl rounded-lg border border-gray-700 p-6">
       <Link
@@ -27,9 +25,7 @@ export default function ProductDetails({
         </div>
 
         <div>
-          <h1 className="text-2xl font-bold text-white">
-            {product.title}
-          </h1>
+          <h1 className="text-2xl font-bold text-white">{product.title}</h1>
 
           <p className="mt-4 text-xl font-semibold text-white">
             ${product.price}
@@ -46,9 +42,7 @@ export default function ProductDetails({
             ⭐ {product.rating.rate} ({product.rating.count})
           </p>
 
-          <p className="mt-6 leading-7 text-gray-300">
-            {product.description}
-          </p>
+          <p className="mt-6 leading-7 text-gray-300">{product.description}</p>
         </div>
       </div>
     </div>
