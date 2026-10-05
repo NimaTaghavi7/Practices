@@ -2,8 +2,8 @@ import "./globals.css";
 
 
 export const metadata = {
-  title: "Product Details API ",
-  description: "Product Details API",
+  title: "Weather APP",
+  description: "Weather APP",
 };
 
 export default function RootLayout({
@@ -15,8 +15,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-[#0a0a0a]">
           {children}
-        
-      </body>
+          </body>
     </html>
   );
 }
