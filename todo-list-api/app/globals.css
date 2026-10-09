@@ -38,13 +38,3 @@ body {
   display: inline-flex;
   animation: reset-spin 0.5s linear;
 }
-
-@keyframes reset-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
